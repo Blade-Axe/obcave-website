@@ -18,7 +18,7 @@ const Navbar = () => {
             /> 
             obcave
             </Link>
-            <Link className={buttonVariants()} href="/login">Login</Link>
+            <Link className={buttonVariants()} href="/login">Log in</Link>
         </div>
     </div>
   )

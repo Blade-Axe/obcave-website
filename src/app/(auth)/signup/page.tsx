@@ -1,6 +1,10 @@
+import SignUpForm from "@/components/form/SignUpForm"
+
 const page = () => {
   return (
-    <div>sign-up</div>
+    <div className="w-full">
+      <SignUpForm/>
+    </div>
   )
 }
 

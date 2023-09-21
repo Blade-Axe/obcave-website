@@ -15,10 +15,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "../ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import oblogo from "public/ob-logo.png"
+import Image from "next/image"
 
 const FormSchema = z.object({
-    username: z.string().min(1, "Username is required").min(3, "Must be longer than 3 characters").max(28),
-    email: z.string().min(1, 'Email is required').email('Invalid Email'),
+    username: z.string().min(1, "Username is required").min(3, "Must be longer than 3 characters").max(28).toLowerCase().trim().transform(value => value.replaceAll(" ", "")),
+    email: z.string().min(1, 'Email is required').email('Invalid email address'),
     password: z
         .string()
         .min(1, 'Password is required')
@@ -53,6 +55,16 @@ const SignUpForm = () => {
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
       <div className="space-y-2 select-none">
+        <div className="flex justify-center">
+          <Image
+                src={oblogo} 
+                width={50} 
+                height={50}
+                alt="ob-logo"
+                />
+        </div>
+        <p className="text-center font-bold text-2xl">Create an ob Account</p>
+        <p className="text-center pb-3">Enter your details</p>
       <FormField
         control={form.control}
         name="username"
@@ -60,7 +72,7 @@ const SignUpForm = () => {
           <FormItem>
             <FormLabel>Username</FormLabel>
             <FormControl>
-              <Input type="username" placeholder="BladeAxe" {...field} />
+              <Input type="username" placeholder="johncave" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -106,9 +118,11 @@ const SignUpForm = () => {
         )}
       />
       </div>
-      <Button className="w-full mt-6" type="submit">
-        Create account
-      </Button>
+      <div className="flex justify-center">
+        <Button className="w-2/3 mt-6" type="submit">
+          Create account
+        </Button>
+      </div>
       <p className='text-center text-sm text-gray-600 mt-2 pt-2'>
       Already have an account? &nbsp;
         <Link className='text-blue-500 hover:underline' href='/login'>

@@ -2,8 +2,9 @@ import Link from "next/link"
 import { buttonVariants } from "./ui/button"
 import { Mountain } from "lucide-react"
 import Image from "next/image"
-import oblogo from "public/oblogo.png"
 import obmouth from "public/obmouth.png"
+import oblogo from "public/ob-logo.png"
+import obbanner from "public/ob-banner.png"
 
 const Navbar = () => {
   return (
@@ -11,12 +12,11 @@ const Navbar = () => {
         <div className="container flex items-center justify-between">
             <Link className="flex gap-1" href="/"> 
             <Image 
-            src={obmouth} 
-            width={25} 
-            height={25}
-            alt="ob-logo"
-            /> 
-            obcave
+            src={obbanner} 
+            width={150} 
+            height={100}
+            alt="ob-banner"
+            />
             </Link>
             <Link className={buttonVariants()} href="/login">Log in</Link>
         </div>

@@ -15,6 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "../ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import oblogo from "public/ob-logo.png"
+import Image from "next/image"
 
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid Email'),
@@ -39,6 +41,16 @@ const LoginForm = () => {
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
       <div className="space-y-2 select-none">
+      <div className="flex justify-center">
+          <Image
+                src={oblogo} 
+                width={50} 
+                height={50}
+                alt="ob-logo"
+                />
+        </div>
+        <p className="text-center font-bold text-2xl">Log in</p>
+        <p className="text-center pb-3">Use your ob Account</p>
       <FormField
         control={form.control}
         name="email"
@@ -66,9 +78,11 @@ const LoginForm = () => {
         )}
       />
       </div>
-      <Button className="w-full mt-6" type="submit">
-        Log in
-      </Button>
+      <div className="flex justify-center">
+        <Button className="w-2/3 mt-6" type="submit">
+          Enter
+        </Button>
+      </div>
       <p className='text-center text-sm text-gray-600 mt-2 pt-2'>
         <Link className='text-blue-500 hover:underline' href='/signup'>
           Create an account

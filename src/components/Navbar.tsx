@@ -5,6 +5,7 @@ import Image from "next/image"
 import obmouth from "public/obmouth.png"
 import oblogo from "public/ob-logo.png"
 import obbanner from "public/ob-banner.png"
+import obbannerv1 from "public/ob-banner-v1.png"
 
 const Navbar = () => {
   return (
@@ -12,7 +13,7 @@ const Navbar = () => {
         <div className="container flex items-center justify-between">
             <Link className="flex gap-1" href="/"> 
             <Image 
-            src={obbanner} 
+            src={obbannerv1} 
             width={150} 
             height={100}
             alt="ob-banner"

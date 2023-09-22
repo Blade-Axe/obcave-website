@@ -16,6 +16,7 @@ import { Button } from "../ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import oblogo from "public/ob-logo.png"
+import oblogov1 from "public/ob-logo-v1.png"
 import Image from "next/image"
 
 const FormSchema = z.object({
@@ -43,14 +44,14 @@ const LoginForm = () => {
       <div className="space-y-2 select-none">
       <div className="flex justify-center">
           <Image
-                src={oblogo} 
+                src={oblogov1} 
                 width={50} 
                 height={50}
                 alt="ob-logo"
                 />
         </div>
-        <p className="text-center font-bold text-2xl">Log in</p>
-        <p className="text-center pb-3">Use your ob Account</p>
+        <p className="text-center font-bold text-2xl">Welcome</p>
+        <p className="text-center pb-3">Log in to obcave</p>
       <FormField
         control={form.control}
         name="email"
@@ -80,7 +81,7 @@ const LoginForm = () => {
       </div>
       <div className="flex justify-center">
         <Button className="w-2/3 mt-6" type="submit">
-          Enter
+          Continue
         </Button>
       </div>
       <p className='text-center text-sm text-gray-600 mt-2 pt-2'>

@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import oblogo from "public/ob-logo.png"
 import Image from "next/image"
+import oblogov1 from "public/ob-logo-v1.png"
 
 const FormSchema = z.object({
     username: z.string().min(1, "Username is required").min(3, "Must be longer than 3 characters").max(28).toLowerCase().trim().transform(value => value.replaceAll(" ", "")),
@@ -57,7 +58,7 @@ const SignUpForm = () => {
       <div className="space-y-2 select-none">
         <div className="flex justify-center">
           <Image
-                src={oblogo} 
+                src={oblogov1} 
                 width={50} 
                 height={50}
                 alt="ob-logo"

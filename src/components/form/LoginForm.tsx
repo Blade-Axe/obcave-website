@@ -43,12 +43,14 @@ const LoginForm = () => {
     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
       <div className="space-y-2 select-none">
       <div className="flex justify-center">
+        <Link className="flex gap-1" href="/"> 
           <Image
                 src={oblogov1} 
                 width={50} 
                 height={50}
                 alt="ob-logo"
                 />
+          </Link>
         </div>
         <p className="text-center font-bold text-2xl">Welcome</p>
         <p className="text-center pb-3">Log in to obcave</p>

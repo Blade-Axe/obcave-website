@@ -19,13 +19,24 @@ import oblogo from "public/ob-logo.png"
 import Image from "next/image"
 import oblogov1 from "public/ob-logo-v1.png"
 
-const FormSchema = z.object({
-    username: z.string().min(1, "Username is required").min(3, "Must be longer than 3 characters").max(28).toLowerCase().trim().transform(value => value.replaceAll(" ", "")),
-    email: z.string().min(1, 'Email is required').email('Invalid email address'),
+const FormSchema = z.object(
+  {
+    username: z
+    .string()
+    .min(1, "Username is required")
+    .min(3, "Must be longer than 3 characters")
+    .max(15, "Must be shorter than 15 characters")
+    .toLowerCase()
+    .transform(value => value.replace(/\W+/g, "")
+    .trim()),
+    email: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Invalid email address'),
     password: z
-        .string()
-        .min(1, 'Password is required')
-        .min(8, 'Password must be longer than 8 characters'),
+    .string()
+    .min(1, 'Password is required')
+    .min(8, 'Password must be longer than 8 characters'),
     confirmPassword: z
     .string()
     .min(1, 'Password is required')
@@ -33,6 +44,10 @@ const FormSchema = z.object({
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
     message: "Passwords do not match"
+  })
+  .refine((value) => value.username, {
+    path: ['username'],
+    message: "Please only use Alphanumeric characters and underscores (_)"
   })
 
 const SignUpForm = () => {
@@ -57,12 +72,14 @@ const SignUpForm = () => {
     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
       <div className="space-y-2 select-none">
         <div className="flex justify-center">
+        <Link className="flex gap-1" href="/">
           <Image
                 src={oblogov1} 
                 width={50} 
                 height={50}
                 alt="ob-logo"
                 />
+        </Link>
         </div>
         <p className="text-center font-bold text-2xl">Create an ob Account</p>
         <p className="text-center pb-3">Enter your details</p>

@@ -21,6 +21,11 @@ import oblogov1 from "public/ob-logo-v1.png"
 
 const FormSchema = z.object(
   {
+    name: z
+    .string()
+    .min(1, "Name is required")
+    .max(35, "Must be shorter than 35 characters")
+    .trim(),
     username: z
     .string()
     .min(1, "Username is required")
@@ -69,17 +74,30 @@ const SignUpForm = () => {
     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
       <div className="space-y-2 select-none">
         <div className="flex justify-center">
-        <Link className="flex gap-1" href="/">
-          <Image
+          <Link className="flex gap-1" href="/">
+            <Image
                 src={oblogov1} 
                 width={50} 
                 height={50}
                 alt="ob-logo"
                 />
-        </Link>
+          </Link>
         </div>
         <p className="text-center font-bold text-2xl">Create an ob Account</p>
         <p className="text-center pb-3">Enter your details</p>
+        <FormField
+        control={form.control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Display Name</FormLabel>
+            <FormControl>
+              <Input type="name" placeholder="John Cave" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
       <FormField
         control={form.control}
         name="username"
@@ -140,7 +158,7 @@ const SignUpForm = () => {
       </div>
       <p className='text-center text-sm text-gray-600 mt-2 pt-2'>
       Already have an account? &nbsp;
-        <Link className='text-blue-500 hover:underline' href='/login'>
+        <Link className='flex justify-center text-blue-500 hover:underline' href='/login'>
           Log in
         </Link>
       </p>

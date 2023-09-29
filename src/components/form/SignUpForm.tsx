@@ -27,8 +27,9 @@ const FormSchema = z.object(
     .min(3, "Must be longer than 3 characters")
     .max(15, "Must be shorter than 15 characters")
     .toLowerCase()
-    .transform(value => value.replace(/\W+/g, "")
-    .trim()),
+    //.transform(value => value.replace(/\W+/g, "")
+    .trim()
+    .refine((str) => !/\W/.test(str), { message: 'Please only use alphanumeric characters and underscores (_)'}),
     email: z
     .string()
     .min(1, 'Email is required')
@@ -44,10 +45,6 @@ const FormSchema = z.object(
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
     message: "Passwords do not match"
-  })
-  .refine((value) => value.username, {
-    path: ['username'],
-    message: "Please only use Alphanumeric characters and underscores (_)"
   })
 
 const SignUpForm = () => {
